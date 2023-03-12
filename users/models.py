@@ -35,9 +35,9 @@ class Usuario(AbstractUser):
     username = models.CharField('Nombre de usuario', unique=True, max_length=100)
     email = models.EmailField('Correo Electronico', unique=True, max_length=254)
     nombre = models.CharField('Nombre', unique=False, max_length=200, blank=True, null= True)
-    usuario_activo = models.BooleanField(default=True)
-    usuario_administrador = models.BooleanField(default=False)
-    staff = models.BooleanField(default=False)
+    # usuario_activo = models.BooleanField(default=True)
+    # usuario_administrador = models.BooleanField(default=False)
+    # staff = models.BooleanField(default=False)
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username','password']
