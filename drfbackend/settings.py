@@ -45,10 +45,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'myapp',
     'users',
-    'rest_framework'
+    'rest_framework',
+    'corsheaders'
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -84,15 +86,15 @@ WSGI_APPLICATION = 'drfbackend.wsgi.application'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
-    # 'default':{
-    #     'ENGINE': 'django.db.backends.sqlite3',
-    #     'NAME': BASE_DIR / 'db.sqlite3',
-    # }
+    'default':{
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
 
-    'default': dj_database_url.config(
-        default='sqlite///db.sqlite3',
-        conn_max_age=600
-    )
+    # 'default': dj_database_url.config(
+    #     default='sqlite///db.sqlite3',
+    #     conn_max_age=600
+    # )
 }
 
 
@@ -115,6 +117,14 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 AUTH_USER_MODEL = 'users.Usuario'
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000"
+]
+
+CORS_ORIGIN_WHITELIST = [
+    "http://localhost:3000"
+]
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
