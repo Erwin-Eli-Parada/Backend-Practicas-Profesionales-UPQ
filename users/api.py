@@ -19,7 +19,7 @@ def user_api_view(request):
         return Response(users_serializer.errors)
 
 @api_view(['GET'])
-def user_detail_view(request,nombre=None):
-    user = Usuario.objects.filter(username = nombre).first()
+def user_detail_view(request,correo=None, password=None):
+    user = Usuario.objects.filter(email = correo, password = password).first()
     user_serializer = UsuarioSerializer(user)
     return Response(user_serializer.data)
