@@ -18,3 +18,9 @@ class UsuarioAgregarSerializer(serializers.ModelSerializer):
         if Usuario.objects.filter(email=value).exists():
             raise serializers.ValidationError("Este correo electrónico ya existe")
         return value
+    
+    def validate_username(self, value):
+        print(value)
+        if Usuario.objects.filter(username=value).exists():
+            raise serializers.ValidationError("Este usuario ya existe")
+        return value
