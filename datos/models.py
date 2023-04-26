@@ -61,3 +61,59 @@ class Encuesta(models.Model):
     def __str__(self):
         return self.descripcion + self.valor_descripcion
     
+# Modelo de proyecto
+class Proyecto(models.Model):
+    id_practica = models.IntegerField(primary_key = True)
+    nombre_proyecto = models.CharField('nombre_proyecto',max_length=300,blank=False,null=False)
+    fecha_solicitud = models.DateTimeField('Fecha de eliminacion')
+    metodo_conocimiento = models.CharField('metodo_conocimiento',max_length=100,blank=True,null=False)
+    calificacion = models.DecimalField('calificacion',max_digits=4,decimal_places=2)
+    comentarios_finales = models.CharField('comentarios_finales',max_length=400,blank=True,null=False)
+    id_asesor = models.ForeignKey(AsesorUPQ, on_delete=models.CASCADE, verbose_name='Asesor UPQ')
+    id_empresa = models.ForeignKey(Empresa, on_delete=models.CASCADE, verbose_name='Empresa')
+
+    class Meta:
+        verbose_name = 'Proyecto'
+        verbose_name_plural = 'Proyectos'
+
+    def __str__(self):
+        return self.nombre_proyecto
+
+# Modelo del alumno
+class Alumno(models.Model):
+    matricula = models.IntegerField(primary_key = True)
+    correo = models.EmailField('correo',max_length=200,blank=True,null=False)
+    correo_institucional = models.EmailField('correo_institucional',max_length=200,blank=True,null=False)
+    generacion = models.IntegerField(blank=False,null=False)
+    grupo = models.CharField('grupo',max_length=10,blank=False,null=False)
+    carrera = models.CharField('carrera',max_length=50,blank=False,null=False)
+    nss = models.CharField('nss',max_length=50,blank=False,null=False)
+    genero = models.CharField('genero',max_length=50,blank=False,null=False)
+    nombre = models.CharField('nombre',max_length=100,blank=False,null=False)
+    id_practica = models.ForeignKey(Proyecto, on_delete=models.CASCADE, verbose_name='Proyecto')
+
+    class Meta:
+        verbose_name = 'Alumno'
+        verbose_name_plural = 'Alumnos'
+
+    def __str__(self):
+        return self.nombre
+
+# Modelo Estatus de la residencia
+class EstatusResidencia(models.Model):
+    id_practica = models.ForeignKey(Proyecto, on_delete=models.CASCADE, verbose_name='Proyecto')
+    comentarios_status = models.CharField('comentarios_status',max_length=400,blank=True,null=False)
+    estatus_proceso = models.CharField('estatus_proceso',max_length=100,blank=True,null=False)
+    tipo_proceso = models.CharField('tipo_proceso',max_length=100,blank=False,null=False)
+    carta_recibida = models.BooleanField(default=False)
+    avance_1 = models.BooleanField(default=False)
+    avance_2 = models.BooleanField(default=False)
+    reporte_final = models.BooleanField(default=False)
+    carta_liberacion = models.BooleanField(default=False)
+
+    class Meta:
+        verbose_name = 'Residencia'
+        verbose_name_plural = 'Residencias'
+
+    def __str__(self):
+        return self.comentarios_status
