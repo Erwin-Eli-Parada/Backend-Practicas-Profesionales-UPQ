@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'myapp',
     'users',
     'historial',
+    'datos',
     'rest_framework',
     'corsheaders'
 ]
