@@ -101,7 +101,7 @@ class Alumno(models.Model):
 
 # Modelo Estatus de la residencia
 class EstatusResidencia(models.Model):
-    id_practica = models.ForeignKey(Proyecto, on_delete=models.CASCADE, verbose_name='Proyecto')
+    id_practica = models.OneToOneField(Proyecto, on_delete=models.CASCADE, verbose_name='Proyecto')
     comentarios_status = models.CharField('comentarios_status',max_length=400,blank=True,null=False)
     estatus_proceso = models.CharField('estatus_proceso',max_length=100,blank=True,null=False)
     tipo_proceso = models.CharField('tipo_proceso',max_length=100,blank=False,null=False)

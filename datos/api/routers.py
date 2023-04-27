@@ -5,6 +5,6 @@ from .views.datosViews import DatosViewSet
 router = DefaultRouter()
 
 router.register(r'alumno',AlumnoViewSet,basename = 'alumnos')
-router.register(r'datos',DatosViewSet,basename = 'datos')
+# router.register(r'datos',DatosViewSet,basename = 'datos')
 
 urlpatterns = router.urls
