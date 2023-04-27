@@ -2,7 +2,9 @@ from datos.models import AsesorExterno
 
 from rest_framework import serializers
 
-class AsesorExternoSerializer(serializers.ModelSerializers):
+from datos.api.serializers.empresaSerializer import EmpresaSerializer
+
+class AsesorExternoSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = AsesorExterno

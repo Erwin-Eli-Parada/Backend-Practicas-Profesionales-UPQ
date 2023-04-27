@@ -4,7 +4,7 @@ from datos.models import EstatusResidencia
 
 from datos.api.serializers.proyectoSerializer import ProyectoSerializer
 
-class EstatusSerializer(serializers.ModelSerializers):
+class EstatusSerializer(serializers.ModelSerializer):
     id_practica = ProyectoSerializer()
 
     class Meta:

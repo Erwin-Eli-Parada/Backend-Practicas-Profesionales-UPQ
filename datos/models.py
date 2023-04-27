@@ -36,7 +36,6 @@ class Empresa(models.Model):
 class AsesorExterno(models.Model):
     id_asesor_ext = models.AutoField(primary_key = True)
     nombre_asesor_ext = models.CharField('nombre_asesor_ext',max_length=200,blank=False,null=False)
-    id_empresa = models.ForeignKey(Empresa, on_delete=models.CASCADE, verbose_name='Empresa')
 
     class Meta:
         verbose_name = 'AsesorExterno'
@@ -71,6 +70,7 @@ class Proyecto(models.Model):
     comentarios_finales = models.CharField('comentarios_finales',max_length=400,blank=True,null=False)
     id_asesor = models.ForeignKey(AsesorUPQ, on_delete=models.CASCADE, verbose_name='Asesor UPQ')
     id_empresa = models.ForeignKey(Empresa, on_delete=models.CASCADE, verbose_name='Empresa')
+    id_asesor_ext = models.ForeignKey(AsesorExterno, on_delete=models.CASCADE, verbose_name='Asesor Externo', null=True)
 
     class Meta:
         verbose_name = 'Proyecto'
