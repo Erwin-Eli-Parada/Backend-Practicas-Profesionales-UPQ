@@ -60,9 +60,28 @@ class Encuesta(models.Model):
     def __str__(self):
         return self.descripcion + self.valor_descripcion
     
+# Modelo Estatus de la residencia
+class EstatusResidencia(models.Model):
+    id_practica = models.IntegerField(primary_key = True)
+    comentarios_status = models.CharField('comentarios_status',max_length=400,blank=True,null=False)
+    estatus_proceso = models.CharField('estatus_proceso',max_length=100,blank=True,null=False)
+    tipo_proceso = models.CharField('tipo_proceso',max_length=100,blank=False,null=False)
+    carta_recibida = models.BooleanField(default=False)
+    avance_1 = models.BooleanField(default=False)
+    avance_2 = models.BooleanField(default=False)
+    reporte_final = models.BooleanField(default=False)
+    carta_liberacion = models.BooleanField(default=False)
+
+    class Meta:
+        verbose_name = 'Residencia'
+        verbose_name_plural = 'Residencias'
+
+    def __str__(self):
+        return self.comentarios_status
+
 # Modelo de proyecto
 class Proyecto(models.Model):
-    id_practica = models.IntegerField(primary_key = True)
+    id_practica = models.OneToOneField(EstatusResidencia, on_delete=models.CASCADE, verbose_name='Practica', null=False)
     nombre_proyecto = models.CharField('nombre_proyecto',max_length=300,blank=False,null=False)
     fecha_solicitud = models.DateTimeField('Fecha de eliminacion')
     metodo_conocimiento = models.CharField('metodo_conocimiento',max_length=100,blank=True,null=False)
@@ -98,22 +117,3 @@ class Alumno(models.Model):
 
     def __str__(self):
         return self.nombre
-
-# Modelo Estatus de la residencia
-class EstatusResidencia(models.Model):
-    id_practica = models.OneToOneField(Proyecto, on_delete=models.CASCADE, verbose_name='Proyecto')
-    comentarios_status = models.CharField('comentarios_status',max_length=400,blank=True,null=False)
-    estatus_proceso = models.CharField('estatus_proceso',max_length=100,blank=True,null=False)
-    tipo_proceso = models.CharField('tipo_proceso',max_length=100,blank=False,null=False)
-    carta_recibida = models.BooleanField(default=False)
-    avance_1 = models.BooleanField(default=False)
-    avance_2 = models.BooleanField(default=False)
-    reporte_final = models.BooleanField(default=False)
-    carta_liberacion = models.BooleanField(default=False)
-
-    class Meta:
-        verbose_name = 'Residencia'
-        verbose_name_plural = 'Residencias'
-
-    def __str__(self):
-        return self.comentarios_status
