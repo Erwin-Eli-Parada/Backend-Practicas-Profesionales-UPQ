@@ -16,3 +16,23 @@ class ProyectoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Proyecto
         fields = '__all__'
+
+
+class ProyectoCrearSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Proyecto
+        fields = '__all__'
+
+    def to_representation(self, instance):
+        return{
+            'id_practica':instance.id_practica.tipoproceso,
+            'nombre_proyecto':instance.nombre_proyecto,
+            'fecha_solicitud':instance.fecha_solicitud,
+            'metodo_conocimiento':instance.metodo_conocimiento,
+            'calificacion':instance.calificacion,
+            'comentarios_finales':instance.comentarios_finales,
+            'id_asesor':instance.id_asesor.nombre,
+            'id_empresa':instance.id_empresa.nombre_empresa,
+            'id_asesor_ext':instance.id_asesor_ext.nombre_asesor_ext
+        }
