@@ -8,6 +8,8 @@ from datos.api.serializers.asesorExternoSerializer import AsesorExternoSerialize
 from datos.api.serializers.estatusSerializer import EstatusSerializer
 
 class ProyectoSerializer(serializers.ModelSerializer):
+    fecha_solicitud = serializers.DateTimeField(format="%Y-%m-%d %H:%M:%S")
+
     id_asesor = AsesorUPQSerializer()
     id_empresa = EmpresaSerializer()
     id_asesor_ext = AsesorExternoSerializer()
@@ -19,6 +21,7 @@ class ProyectoSerializer(serializers.ModelSerializer):
 
 
 class ProyectoCrearSerializer(serializers.ModelSerializer):
+    fecha_solicitud = serializers.DateTimeField(format="%Y-%m-%d %H:%M:%S")
 
     class Meta:
         model = Proyecto
