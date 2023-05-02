@@ -2,9 +2,10 @@ from datos.models import AsesorExterno
 
 from rest_framework import serializers
 
-from datos.api.serializers.empresaSerializer import EmpresaSerializer
+from datos.api.serializers.encuestaSerializer import EncuestaSerializer
 
 class AsesorExternoSerializer(serializers.ModelSerializer):
+    encuesta = EncuestaSerializer(many=True, read_only=True)
 
     class Meta:
         model = AsesorExterno

@@ -51,7 +51,7 @@ class Encuesta(models.Model):
     valor_descripcion = models.CharField('valor_descripcion',max_length=100,blank=False,null=False)
     pregunta = models.CharField('pregunta',max_length=300,blank=False,null=False)
     valor = models.IntegerField(blank=False,null=False)
-    id_asesor_ext = models.ForeignKey(AsesorExterno, on_delete=models.CASCADE, verbose_name='Asesor Externo')
+    id_asesor_ext = models.ForeignKey(AsesorExterno, on_delete=models.CASCADE, related_name='encuesta')
 
     class Meta:
         verbose_name = 'Encuesta'
