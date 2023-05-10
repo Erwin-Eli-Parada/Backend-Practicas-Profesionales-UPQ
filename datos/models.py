@@ -12,7 +12,7 @@ class AsesorUPQ(models.Model):
         verbose_name_plural = 'AsesoresUPQ'
 
     def __str__(self):
-        return self.nombre + self.id_asesor
+        return self.nombre +" "+str(self.id_asesor)
     
 
 # Modelo de Empresa

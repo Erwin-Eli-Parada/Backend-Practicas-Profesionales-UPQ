@@ -7,6 +7,7 @@ from .views.asesorUPQViews import AsesorUPQViewSet
 from .views.empresaViews import EmpresaViewSet
 from .views.encuestaViews import EncuestaViewSet
 from .views.estatusViews import EstatusViewSet
+from .views.excelViews import ExcelViewSet
 
 router = DefaultRouter()
 
@@ -17,6 +18,7 @@ router.register(r'asesorUPQ',AsesorUPQViewSet,basename = 'asesorUPQ')
 router.register(r'empresa',EmpresaViewSet,basename = 'empresa')
 router.register(r'encuesta',EncuestaViewSet,basename = 'encuesta')
 router.register(r'estatus',EstatusViewSet,basename = 'estatus')
+router.register(r'archivo',ExcelViewSet,basename = 'archivo')
 # router.register(r'datos',DatosViewSet,basename = 'datos')
 
 urlpatterns = router.urls

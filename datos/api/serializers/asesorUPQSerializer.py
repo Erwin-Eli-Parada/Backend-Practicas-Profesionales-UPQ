@@ -8,3 +8,10 @@ class AsesorUPQSerializer(serializers.ModelSerializer):
         model = AsesorUPQ
         fields = '__all__'
         read_only_fields = ('id_asesor',)
+
+class AsesorUPQIdSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = AsesorUPQ
+        fields = 'id_asesor'
+        read_only_fields = ('id_asesor',)
