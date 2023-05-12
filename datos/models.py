@@ -83,9 +83,9 @@ class EstatusResidencia(models.Model):
 class Proyecto(models.Model):
     id_practica = models.OneToOneField(EstatusResidencia, on_delete=models.CASCADE, verbose_name='Practica', null=False)
     nombre_proyecto = models.CharField('nombre_proyecto',max_length=300,blank=True,null=False)
-    fecha_solicitud = models.DateTimeField('Fecha de eliminacion',blank=True)
+    fecha_solicitud = models.DateTimeField('Fecha de eliminacion',blank=True, null=True)
     metodo_conocimiento = models.CharField('metodo_conocimiento',max_length=100,blank=True,null=False)
-    calificacion = models.DecimalField('calificacion',max_digits=4,decimal_places=2,blank=True)
+    calificacion = models.DecimalField('calificacion',max_digits=5,decimal_places=2,blank=True)
     comentarios_finales = models.CharField('comentarios_finales',max_length=400,blank=True,null=False)
     id_asesor = models.ForeignKey(AsesorUPQ, on_delete=models.CASCADE, verbose_name='Asesor UPQ')
     id_empresa = models.ForeignKey(Empresa, on_delete=models.CASCADE, verbose_name='Empresa')
@@ -100,7 +100,7 @@ class Proyecto(models.Model):
 
 # Modelo del alumno
 class Alumno(models.Model):
-    matricula = models.IntegerField(primary_key = True)
+    matricula = models.CharField(primary_key = True, max_length=10)
     correo = models.EmailField('correo',max_length=200,blank=True,null=False)
     correo_institucional = models.EmailField('correo_institucional',max_length=200,blank=True,null=False)
     generacion = models.IntegerField(blank=False,null=False)

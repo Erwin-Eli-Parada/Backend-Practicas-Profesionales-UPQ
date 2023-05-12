@@ -7,9 +7,10 @@ from datos.models import Empresa
 from datos.models import AsesorExterno
 from datos.models import EstatusResidencia
 from datos.api.serializers.asesorUPQSerializer import AsesorUPQIdSerializer, AsesorUPQSerializer
-from datos.api.serializers.empresaSerializer import EmpresaSerializer
-from datos.api.serializers.asesorExternoSerializer import AsesorExternoSerializer
+from datos.api.serializers.empresaSerializer import EmpresaSerializer, EmpresaIdSerializer
+from datos.api.serializers.asesorExternoSerializer import AsesorExternoSerializer, AsesorExternoIdSerializer
 from datos.api.serializers.estatusSerializer import EstatusSerializer
+from datos.api.serializers.proyectoSerializer import ProyectoCrearSerializer
 import pandas as pd
 import math
 
@@ -18,10 +19,6 @@ class ExcelViewSet(viewsets.ModelViewSet):
         archivo = request.FILES.get('archivo')
         data = pd.read_excel(archivo)
         df = pd.DataFrame(data)
-        id_asesorupq = 1
-        id_asesor = 1
-        id_empresa = 1
-
         
         for i in range(len(data)):
             #Datos del Asesor UPQ
@@ -84,10 +81,45 @@ class ExcelViewSet(viewsets.ModelViewSet):
                     else:
                         return Response(serializer.errors,status = status.HTTP_400_BAD_REQUEST)
 
-                #Datos del proyecto
-                asesor = AsesorUPQIdSerializer.Meta.model.objects.filter(nombre=str(df.at[i, 'Asesor UPQ'])).first()
-                if asesor is not None:
-                    id_asesorupq = asesor.id_asesor
+            #Datos del proyecto     
+                    id_asesorupq = 1
+                    id_asesor = 1
+                    id_empresa = 1
+
+                    asesor = AsesorUPQIdSerializer.Meta.model.objects.filter(nombre=str(df.at[i, 'Asesor UPQ'])).first()
+                    if asesor is not None:
+                        id_asesorupq = asesor.id_asesor
+
+                    asesorext = AsesorExternoIdSerializer.Meta.model.objects.filter(nombre_asesor_ext=str(df.at[i, 'Asesor Empresa'])).first()
+                    if asesorext is not None:
+                        id_asesor = asesorext.id_asesor_ext
+
+                    empresa = EmpresaIdSerializer.Meta.model.objects.filter(nombre_empresa=str(df.at[i, 'Empresa'])).first()
+                    if empresa is not None:
+                        id_empresa = empresa.id_empresa
+
+                    dataR2 ={
+                        "id_practica":str(df.at[i, 'Id']),
+                        "nombre_proyecto":str(df.at[i, 'Proyecto']),
+                        "fecha_solicitud":"0001-01-01 00:00:01" if str(df.at[i, 'Fecha Solicitud'])=="nan" else str(df.at[i, 'Fecha Solicitud']),
+                        "metodo_conocimiento":str(df.at[i, 'Metodo conocimiento']),
+                        "calificacion": 0 if str(df.at[i, 'Calificación Final']) == "nan" else df.at[i, 'Calificación Final'],
+                        "comentarios_finales":str(df.at[i, 'Comentarios Finales']),
+                        "id_asesor":id_asesorupq,
+                        "id_empresa":id_empresa,
+                        "id_asesor_ext":id_asesor
+                    }
+
+                    serializer2 = ProyectoCrearSerializer(data = dataR2)
+                    if serializer2.is_valid():
+                        serializer2.save()
+                    else:
+                        # return Response(dataR2["id_practica"]+" "+str(dataR2["fecha_solicitud"]),status = status.HTTP_400_BAD_REQUEST)
+                        return Response(serializer2.errors,status = status.HTTP_400_BAD_REQUEST)
+                    
+                    print("asesor upq "+ str(id_asesorupq)+" asesor externo "+str(id_asesor)+" empresa "+str(id_empresa))
+
+                    
 
                 
 
