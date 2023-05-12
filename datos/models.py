@@ -21,8 +21,8 @@ class Empresa(models.Model):
     nombre_empresa = models.CharField('nombre_empresa',max_length=200,blank=False,null=False)
     sector = models.CharField('sector',max_length=100,blank=True,null=False)
     giro = models.CharField('giro',max_length=100,blank=True,null=False)
-    tamanio = models.CharField('tamanio',max_length=1,blank=True,null=False)
-    correo = models.EmailField('correo',max_length=200,blank=True,null=False)
+    tamanio = models.CharField('tamanio',max_length=2,blank=True,null=False)
+    correo = models.CharField('correo',max_length=200,blank=True,null=False)
     telefono = models.CharField('telefono',max_length=50,blank=True,null=False)
 
     class Meta:
@@ -63,7 +63,7 @@ class Encuesta(models.Model):
 # Modelo Estatus de la residencia
 class EstatusResidencia(models.Model):
     id_practica = models.IntegerField(primary_key = True)
-    comentarios_status = models.CharField('comentarios_status',max_length=400,blank=True,null=False)
+    comentarios_status = models.CharField('comentarios_status',max_length=1000,blank=True,null=False)
     estatus_proceso = models.CharField('estatus_proceso',max_length=100,blank=True,null=False)
     tipo_proceso = models.CharField('tipo_proceso',max_length=100,blank=False,null=False)
     carta_recibida = models.BooleanField(default=False)
@@ -82,10 +82,10 @@ class EstatusResidencia(models.Model):
 # Modelo de proyecto
 class Proyecto(models.Model):
     id_practica = models.OneToOneField(EstatusResidencia, on_delete=models.CASCADE, verbose_name='Practica', null=False)
-    nombre_proyecto = models.CharField('nombre_proyecto',max_length=300,blank=False,null=False)
-    fecha_solicitud = models.DateTimeField('Fecha de eliminacion')
+    nombre_proyecto = models.CharField('nombre_proyecto',max_length=300,blank=True,null=False)
+    fecha_solicitud = models.DateTimeField('Fecha de eliminacion',blank=True)
     metodo_conocimiento = models.CharField('metodo_conocimiento',max_length=100,blank=True,null=False)
-    calificacion = models.DecimalField('calificacion',max_digits=4,decimal_places=2)
+    calificacion = models.DecimalField('calificacion',max_digits=4,decimal_places=2,blank=True)
     comentarios_finales = models.CharField('comentarios_finales',max_length=400,blank=True,null=False)
     id_asesor = models.ForeignKey(AsesorUPQ, on_delete=models.CASCADE, verbose_name='Asesor UPQ')
     id_empresa = models.ForeignKey(Empresa, on_delete=models.CASCADE, verbose_name='Empresa')
