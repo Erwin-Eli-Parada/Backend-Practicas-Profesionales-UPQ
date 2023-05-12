@@ -147,14 +147,7 @@ class ExcelViewSet(viewsets.ModelViewSet):
                     if serializer.is_valid():
                         serializer.save()
                     else:
-                        return Response(dataR["matricula"]+" "+str(dataR["correo"]) +" "+ str(dataR["correo_institucional"]) ,status = status.HTTP_400_BAD_REQUEST)
-                        # return Response(serializer.errors,status = status.HTTP_400_BAD_REQUEST) 
-                
-
-        # serializer = ProyectoCrearSerializer(data = request.data)
-        # if serializer.is_valid():
-        #     serializer.save()
-        #     return Response({'mensaje':'Alumno creado correctamente!'}, status = status.HTTP_201_CREATED)   
-        # return Response(serializer.errors,status = status.HTTP_400_BAD_REQUEST)
+                        # return Response(dataR["matricula"]+" "+str(dataR["correo"]) +" "+ str(dataR["correo_institucional"]) ,status = status.HTTP_400_BAD_REQUEST)
+                        return Response(serializer.errors,status = status.HTTP_400_BAD_REQUEST) 
 
         return Response({'mensaje':'Agregado correctamente'}, status = status.HTTP_201_CREATED)  
