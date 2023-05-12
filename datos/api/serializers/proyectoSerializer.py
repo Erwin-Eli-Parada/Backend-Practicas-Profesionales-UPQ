@@ -39,3 +39,10 @@ class ProyectoCrearSerializer(serializers.ModelSerializer):
             'id_empresa':instance.id_empresa.nombre_empresa,
             'id_asesor_ext':instance.id_asesor_ext.nombre_asesor_ext
         }
+    
+class ProyectoIdSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Proyecto
+        fields = 'id_practica'
+        read_only_fields = ('id_practica',)

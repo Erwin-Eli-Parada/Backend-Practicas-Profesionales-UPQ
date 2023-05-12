@@ -101,8 +101,8 @@ class Proyecto(models.Model):
 # Modelo del alumno
 class Alumno(models.Model):
     matricula = models.CharField(primary_key = True, max_length=10)
-    correo = models.EmailField('correo',max_length=200,blank=True,null=False)
-    correo_institucional = models.EmailField('correo_institucional',max_length=200,blank=True,null=False)
+    correo = models.CharField('correo',max_length=254,blank=True,null=False)
+    correo_institucional = models.EmailField('correo_institucional',max_length=254,blank=True,null=False)
     generacion = models.IntegerField(blank=False,null=False)
     grupo = models.CharField('grupo',max_length=10,blank=False,null=False)
     carrera = models.CharField('carrera',max_length=50,blank=False,null=False)

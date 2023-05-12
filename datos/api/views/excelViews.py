@@ -6,11 +6,13 @@ from datos.models import AsesorUPQ
 from datos.models import Empresa
 from datos.models import AsesorExterno
 from datos.models import EstatusResidencia
+from datos.models import Alumno
 from datos.api.serializers.asesorUPQSerializer import AsesorUPQIdSerializer, AsesorUPQSerializer
 from datos.api.serializers.empresaSerializer import EmpresaSerializer, EmpresaIdSerializer
 from datos.api.serializers.asesorExternoSerializer import AsesorExternoSerializer, AsesorExternoIdSerializer
 from datos.api.serializers.estatusSerializer import EstatusSerializer
-from datos.api.serializers.proyectoSerializer import ProyectoCrearSerializer
+from datos.api.serializers.proyectoSerializer import ProyectoCrearSerializer, ProyectoIdSerializer
+from datos.api.serializers.alumnoSerializer import AlumnoCrearSerializer
 import pandas as pd
 import math
 
@@ -119,8 +121,34 @@ class ExcelViewSet(viewsets.ModelViewSet):
                     
                     print("asesor upq "+ str(id_asesorupq)+" asesor externo "+str(id_asesor)+" empresa "+str(id_empresa))
 
-                    
+            if str(df.at[i, 'Matricula']) != "nan":
+                if not Alumno.objects.filter(matricula=str(df.at[i, 'Matricula'])).exists():
 
+                    id_practica = 1
+
+                    proyecto = ProyectoIdSerializer.Meta.model.objects.filter(id_practica=str(df.at[i, 'Id'])).first()
+                    if proyecto is not None:
+                        id_practica = proyecto.id
+                        
+                    dataR={
+                        "matricula":df.at[i, 'Matricula'],
+                        "correo":str(df.at[i, 'Correo']),
+                        "correo_institucional":str(df.at[i, 'Correo Institucional']),
+                        "generacion":str(df.at[i, 'Generación']),
+                        "grupo":str(df.at[i, 'Grupo']),
+                        "carrera":str(df.at[i, 'Carrera']),
+                        "nss":str(df.at[i, 'NSS']),
+                        "genero":str(df.at[i, 'Genero']),
+                        "nombre":str(df.at[i, 'Alumno']),
+                        "id_practica":id_practica
+                    }
+
+                    serializer = AlumnoCrearSerializer(data = dataR)
+                    if serializer.is_valid():
+                        serializer.save()
+                    else:
+                        return Response(dataR["matricula"]+" "+str(dataR["correo"]) +" "+ str(dataR["correo_institucional"]) ,status = status.HTTP_400_BAD_REQUEST)
+                        # return Response(serializer.errors,status = status.HTTP_400_BAD_REQUEST) 
                 
 
         # serializer = ProyectoCrearSerializer(data = request.data)
