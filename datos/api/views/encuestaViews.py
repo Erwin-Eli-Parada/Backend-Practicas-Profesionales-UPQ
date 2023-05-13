@@ -2,6 +2,9 @@ from rest_framework import generics
 from rest_framework import status
 from rest_framework import viewsets
 from rest_framework.response import Response
+from rest_framework.views import APIView
+from rest_framework.decorators import api_view
+from datos.models import Encuesta
 
 from datos.api.serializers.encuestaSerializer import EncuestaSerializer
 
@@ -38,3 +41,12 @@ class EncuestaViewSet(viewsets.ModelViewSet):
             alumno.delete()
             return Response({'message':'Encuesta eliminada correctamente'},status = status.HTTP_200_OK)
         return Response({'error':'No existe'},status = status.HTTP_400_BAD_REQUEST)
+    
+@api_view(['GET'])
+def encuesta_detail_view(request, pk=None):
+    if request.method == 'GET':
+        encuesta = Encuesta.objects.filter(id_alumno = pk).first()
+        if encuesta==None:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+        encuesta_serializer = EncuestaSerializer(encuesta)
+        return Response(encuesta_serializer.data, status= status.HTTP_200_OK)

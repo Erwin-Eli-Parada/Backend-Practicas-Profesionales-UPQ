@@ -52,7 +52,7 @@ class Encuesta(models.Model):
     pregunta = models.CharField('pregunta',max_length=1000,blank=False,null=False)
     valor = models.IntegerField(blank=False,null=False)
     id_asesor_ext = models.ForeignKey(AsesorExterno, on_delete=models.CASCADE, related_name='encuesta')
-
+    id_alumno = models.CharField('alumno',max_length=50,blank=True,null=True)
     class Meta:
         verbose_name = 'Encuesta'
         verbose_name_plural = 'Encuestas'
