@@ -45,8 +45,8 @@ class EncuestaViewSet(viewsets.ModelViewSet):
 @api_view(['GET'])
 def encuesta_detail_view(request, pk=None):
     if request.method == 'GET':
-        encuesta = Encuesta.objects.filter(id_alumno = pk).first()
+        encuesta = Encuesta.objects.filter(id_alumno = pk).all()
         if encuesta==None:
             return Response(status=status.HTTP_400_BAD_REQUEST)
-        encuesta_serializer = EncuestaSerializer(encuesta)
+        encuesta_serializer = EncuestaSerializer(encuesta, many=True)
         return Response(encuesta_serializer.data, status= status.HTTP_200_OK)
