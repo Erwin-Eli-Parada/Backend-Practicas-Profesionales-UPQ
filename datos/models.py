@@ -49,7 +49,7 @@ class Encuesta(models.Model):
     id_encuesta = models.AutoField(primary_key = True)
     descripcion = models.CharField('descripcion',max_length=300,blank=False,null=False)
     valor_descripcion = models.CharField('valor_descripcion',max_length=100,blank=False,null=False)
-    pregunta = models.CharField('pregunta',max_length=300,blank=False,null=False)
+    pregunta = models.CharField('pregunta',max_length=1000,blank=False,null=False)
     valor = models.IntegerField(blank=False,null=False)
     id_asesor_ext = models.ForeignKey(AsesorExterno, on_delete=models.CASCADE, related_name='encuesta')
 

@@ -8,6 +8,7 @@ from .views.empresaViews import EmpresaViewSet
 from .views.encuestaViews import EncuestaViewSet
 from .views.estatusViews import EstatusViewSet
 from .views.excelViews import ExcelViewSet
+from .views.excelEncuestaViews import ExcelEncuestasViewSet
 
 router = DefaultRouter()
 
@@ -19,6 +20,7 @@ router.register(r'empresa',EmpresaViewSet,basename = 'empresa')
 router.register(r'encuesta',EncuestaViewSet,basename = 'encuesta')
 router.register(r'estatus',EstatusViewSet,basename = 'estatus')
 router.register(r'archivo',ExcelViewSet,basename = 'archivo')
+router.register(r'archivoEncuesta',ExcelEncuestasViewSet,basename = 'archivoEncuesta')
 # router.register(r'datos',DatosViewSet,basename = 'datos')
 
 urlpatterns = router.urls
