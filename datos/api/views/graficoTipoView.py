@@ -8,29 +8,20 @@ from datos.models import Alumno
 @api_view(['GET'])
 def graficoTipoView(request):
     if request.method == 'GET':
-        autorizado = 0
-        concluido = 0
-        corregir_info = 0
-        solicitud = 0
-        rechazado = 0
-        reprobado = 0
+        estadia = 0
+        estancia1 = 0
+        estancia2 = 0
 
-        autorizado = Alumno.objects.filter(id_practica__id_practica__estatus_proceso = 'AUTORIZADO').count()
-        concluido = Alumno.objects.filter(id_practica__id_practica__estatus_proceso = 'CONCLUIDO').count()
-        corregir_info = Alumno.objects.filter(id_practica__id_practica__estatus_proceso = 'CORREGIR INFORMACIÓN').count()
-        solicitud = Alumno.objects.filter(id_practica__id_practica__estatus_proceso = 'SOLICITUD').count()
-        rechazado = Alumno.objects.filter(id_practica__id_practica__estatus_proceso = 'RECHAZADO').count()
-        reprobado = Alumno.objects.filter(id_practica__id_practica__estatus_proceso = 'REPROBADO').count()
+        estadia = Alumno.objects.filter(id_practica__id_practica__tipo_proceso = 'Estadia').count()
+        estancia1 = Alumno.objects.filter(id_practica__id_practica__tipo_proceso = 'Estancia I').count()
+        estancia2 = Alumno.objects.filter(id_practica__id_practica__tipo_proceso = 'Estancia II').count()
 
-        if autorizado == None or solicitud==None or concluido==None or corregir_info==None or rechazado==None or reprobado==None:
+        if estadia == None or estancia1==None or estancia2==None:
             return Response(status=status.HTTP_400_BAD_REQUEST)
         
         respuesta = {
-            'autorizado': autorizado,
-            'concluido' : concluido,
-            'corregir_info': corregir_info,
-            'solicitud' : solicitud,
-            'rechazado' : rechazado,
-            'reprobado' : reprobado
+            'estadia': estadia,
+            'estancia1': estancia1,
+            'estancia2': estancia2
         }
         return Response( respuesta, status= status.HTTP_200_OK)
