@@ -60,6 +60,19 @@ class Encuesta(models.Model):
     def __str__(self):
         return self.descripcion + self.valor_descripcion
     
+class Comentario(models.Model):
+    id_comentario = models.AutoField(primary_key = True)
+    pregunta = models.CharField('pregunta',max_length=1000,blank=False,null=False)
+    comentario = models.CharField('comentario',blank=False,null=False,max_length=1000)
+    id_asesor_ext = models.ForeignKey(AsesorExterno, on_delete=models.CASCADE, related_name='comentario')
+    id_alumno = models.CharField('alumno',max_length=50,blank=True,null=True)
+    class Meta:
+        verbose_name = 'Comentario'
+        verbose_name_plural = 'Comentarios'
+
+    def __str__(self):
+        return self.pregunta + self.comentario
+    
 # Modelo Estatus de la residencia
 class EstatusResidencia(models.Model):
     id_practica = models.IntegerField(primary_key = True)

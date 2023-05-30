@@ -3,12 +3,12 @@ from rest_framework import status
 from rest_framework import viewsets
 from rest_framework.response import Response
 from datos.api.serializers.asesorExternoSerializer import AsesorExternoIdSerializer
-from datos.api.serializers.encuestaSerializer import EncuestaSerializer
+from datos.api.serializers.comentarioSerializer import ComentarioSerializer
 from datos.api.serializers.alumnoSerializer import AlumnoSerializer
 import pandas as pd
 import math
 
-class ExcelEncuestasViewSet(viewsets.ModelViewSet):
+class ExcelComentarioViewSet(viewsets.ModelViewSet):
     def create(self,request):
         archivo = request.FILES.get('archivo')
         data = pd.read_excel(archivo, dtype={'Matricula': str})
@@ -22,15 +22,13 @@ class ExcelEncuestasViewSet(viewsets.ModelViewSet):
                 if asesorext is not None:
                     id_asesor = asesorext.id_asesor_ext
                     dataR = {
-                        "descripcion":str(df.at[i, 'Descripcion']),
-                        "valor_descripcion":str(df.at[i, 'Valor Descripcion']),
                         "pregunta":str(df.at[i, 'Pregunta']),
-                        "valor":str(df.at[i, 'Valor']),
+                        "comentario":str(df.at[i, 'Comentario']),
                         "id_asesor_ext":id_asesor,
                         "id_alumno":matricula_df
                     }
                     print(dataR)
-                    serializer = EncuestaSerializer(data = dataR)
+                    serializer = ComentarioSerializer(data = dataR)
                     if serializer.is_valid():
                         serializer.save()
                     else:
