@@ -12,6 +12,7 @@ from .views.graficoGeneracionView import graficoGeneracionView
 from .views.graficoCalificacionTipoView import graficoCalificacionTipoView
 from .views.graficoGeneroCarreraView import graficoGeneroCarreraView
 from .views.graficoStatusCarreraView import graficoStatusCarreraView
+from .views.graficoContrato import graficoContratoView
 
 urlpatterns = [
     path('datos/',include('datos.api.routers')),
@@ -27,4 +28,5 @@ urlpatterns = [
     path('grafico/calificacionTipo/', graficoCalificacionTipoView, name='grafico_calificacionTipo'),
     path('grafico/generoCarrera/', graficoGeneroCarreraView, name='grafico_generoCarrera'),
     path('grafico/statusCarrera/', graficoStatusCarreraView, name='grafico_statusCarrera'),
+    path('grafico/contrato/', graficoContratoView, name='grafico_contrato'), 
 ]
