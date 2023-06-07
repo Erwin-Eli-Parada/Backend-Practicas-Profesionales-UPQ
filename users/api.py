@@ -1,7 +1,8 @@
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.decorators import api_view
-from rest_framework import status  
+from rest_framework import status
+from django.contrib.auth.hashers import check_password
 from .models import Usuario
 from .serializers import UsuarioSerializer, UsuarioAgregarSerializer, UsuarioActualizarSerializer
 
@@ -21,11 +22,20 @@ def user_api_view(request):
 
 @api_view(['GET'])
 def user_login_view(request,correo=None, password=None):
-    user = Usuario.objects.filter(email = correo, password = password).first()
-    user_serializer = UsuarioSerializer(user)
+    user = Usuario.objects.filter(email = correo).first()
     if user==None:
+        return Response(status=status.HTTP_401_UNAUTHORIZED)
+    hashed_password = user.password
+    if check_password(password, hashed_password):
+    # La contraseña es correcta
+        print('Contraseña válida')
+        user_serializer = UsuarioSerializer(user)
+        return Response(user_serializer.data, status=status.HTTP_202_ACCEPTED)
+    else:
+    # La contraseña es incorrecta
+        print('Contraseña incorrecta')
+        user_serializer = UsuarioSerializer(user)
         return Response(user_serializer.data, status=status.HTTP_401_UNAUTHORIZED)
-    return Response(user_serializer.data, status=status.HTTP_202_ACCEPTED)
 
 @api_view(['GET','PUT','DELETE'])
 def user_detail_view(request, pk=None):
