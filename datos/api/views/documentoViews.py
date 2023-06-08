@@ -64,64 +64,64 @@ def documentoView(request):
         #Status carreras
         estatus_carreras = {
             "autorizado":[
-                Alumno.objects.filter(id_practica__id_practica__estatus_proceso = 'AUTORIZADO').filter(carrera = 'AUTOMOTRIZ').count()*100/automotriz,
-                Alumno.objects.filter(id_practica__id_practica__estatus_proceso = 'AUTORIZADO').filter(carrera = 'MANUFACTURA').count()*100/manufactura,
-                Alumno.objects.filter(id_practica__id_practica__estatus_proceso = 'AUTORIZADO').filter(carrera = 'MECATRONICA').count()*100/mecatronica,
-                Alumno.objects.filter(id_practica__id_practica__estatus_proceso = 'AUTORIZADO').filter(carrera = 'NEGOCIOS').count()*100/negocios,
-                Alumno.objects.filter(id_practica__id_practica__estatus_proceso = 'AUTORIZADO').filter(carrera = 'PYMES').count()*100/pymes,
-                Alumno.objects.filter(id_practica__id_practica__estatus_proceso = 'AUTORIZADO').filter(carrera = 'PYMES EJECUTIVA').count()*100/pymes_eje,
-                Alumno.objects.filter(id_practica__id_practica__estatus_proceso = 'AUTORIZADO').filter(carrera = 'SISTEMAS').count()*100/sistemas,
-                Alumno.objects.filter(id_practica__id_practica__estatus_proceso = 'AUTORIZADO').filter(carrera = 'TELEMATICA').count()*100/telematica
+                Alumno.objects.filter(id_practica__id_practica__estatus_proceso = 'AUTORIZADO').filter(carrera = 'AUTOMOTRIZ').count()*100/automotriz if automotriz!=0 else 0,
+                Alumno.objects.filter(id_practica__id_practica__estatus_proceso = 'AUTORIZADO').filter(carrera = 'MANUFACTURA').count()*100/manufactura if manufactura!=0 else 0,
+                Alumno.objects.filter(id_practica__id_practica__estatus_proceso = 'AUTORIZADO').filter(carrera = 'MECATRONICA').count()*100/mecatronica if mecatronica!=0 else 0,
+                Alumno.objects.filter(id_practica__id_practica__estatus_proceso = 'AUTORIZADO').filter(carrera = 'NEGOCIOS').count()*100/negocios if negocios!=0 else 0,
+                Alumno.objects.filter(id_practica__id_practica__estatus_proceso = 'AUTORIZADO').filter(carrera = 'PYMES').count()*100/pymes if pymes!=0 else 0,
+                Alumno.objects.filter(id_practica__id_practica__estatus_proceso = 'AUTORIZADO').filter(carrera = 'PYMES EJECUTIVA').count()*100/pymes_eje if pymes_eje!=0 else 0,
+                Alumno.objects.filter(id_practica__id_practica__estatus_proceso = 'AUTORIZADO').filter(carrera = 'SISTEMAS').count()*100/sistemas if sistemas!=0 else 0,
+                Alumno.objects.filter(id_practica__id_practica__estatus_proceso = 'AUTORIZADO').filter(carrera = 'TELEMATICA').count()*100/telematica if telematica!=0 else 0
             ],
             "concluido":[
-                Alumno.objects.filter(id_practica__id_practica__estatus_proceso = 'CONCLUIDO').filter(carrera = 'AUTOMOTRIZ').count()*100/automotriz,
-                Alumno.objects.filter(id_practica__id_practica__estatus_proceso = 'CONCLUIDO').filter(carrera = 'MANUFACTURA').count()*100/manufactura,
-                Alumno.objects.filter(id_practica__id_practica__estatus_proceso = 'CONCLUIDO').filter(carrera = 'MECATRONICA').count()*100/mecatronica,
-                Alumno.objects.filter(id_practica__id_practica__estatus_proceso = 'CONCLUIDO').filter(carrera = 'NEGOCIOS').count()*100/negocios,
-                Alumno.objects.filter(id_practica__id_practica__estatus_proceso = 'CONCLUIDO').filter(carrera = 'PYMES').count()*100/pymes,
-                Alumno.objects.filter(id_practica__id_practica__estatus_proceso = 'CONCLUIDO').filter(carrera = 'PYMES EJECUTIVA').count()*100/pymes_eje,
-                Alumno.objects.filter(id_practica__id_practica__estatus_proceso = 'CONCLUIDO').filter(carrera = 'SISTEMAS').count()*100/sistemas,
-                Alumno.objects.filter(id_practica__id_practica__estatus_proceso = 'CONCLUIDO').filter(carrera = 'TELEMATICA').count()*100/telematica
+                Alumno.objects.filter(id_practica__id_practica__estatus_proceso = 'CONCLUIDO').filter(carrera = 'AUTOMOTRIZ').count()*100/automotriz if automotriz!=0 else 0,
+                Alumno.objects.filter(id_practica__id_practica__estatus_proceso = 'CONCLUIDO').filter(carrera = 'MANUFACTURA').count()*100/manufactura if manufactura!=0 else 0,
+                Alumno.objects.filter(id_practica__id_practica__estatus_proceso = 'CONCLUIDO').filter(carrera = 'MECATRONICA').count()*100/mecatronica if mecatronica!=0 else 0,
+                Alumno.objects.filter(id_practica__id_practica__estatus_proceso = 'CONCLUIDO').filter(carrera = 'NEGOCIOS').count()*100/negocios if negocios!=0 else 0,
+                Alumno.objects.filter(id_practica__id_practica__estatus_proceso = 'CONCLUIDO').filter(carrera = 'PYMES').count()*100/pymes if pymes!=0 else 0,
+                Alumno.objects.filter(id_practica__id_practica__estatus_proceso = 'CONCLUIDO').filter(carrera = 'PYMES EJECUTIVA').count()*100/pymes_eje if pymes_eje!=0 else 0,
+                Alumno.objects.filter(id_practica__id_practica__estatus_proceso = 'CONCLUIDO').filter(carrera = 'SISTEMAS').count()*100/sistemas if sistemas!=0 else 0,
+                Alumno.objects.filter(id_practica__id_practica__estatus_proceso = 'CONCLUIDO').filter(carrera = 'TELEMATICA').count()*100/telematica if telematica!=0 else 0
             ],
             "corregir_info":[
-                Alumno.objects.filter(id_practica__id_practica__estatus_proceso = 'CORREGIR INFORMACIÓN').filter(carrera = 'AUTOMOTRIZ').count()*100/automotriz,
-                Alumno.objects.filter(id_practica__id_practica__estatus_proceso = 'CORREGIR INFORMACIÓN').filter(carrera = 'MANUFACTURA').count()*100/manufactura,
-                Alumno.objects.filter(id_practica__id_practica__estatus_proceso = 'CORREGIR INFORMACIÓN').filter(carrera = 'MECATRONICA').count()*100/mecatronica,
-                Alumno.objects.filter(id_practica__id_practica__estatus_proceso = 'CORREGIR INFORMACIÓN').filter(carrera = 'NEGOCIOS').count()*100/negocios,
-                Alumno.objects.filter(id_practica__id_practica__estatus_proceso = 'CORREGIR INFORMACIÓN').filter(carrera = 'PYMES').count()*100/pymes,
-                Alumno.objects.filter(id_practica__id_practica__estatus_proceso = 'CORREGIR INFORMACIÓN').filter(carrera = 'PYMES EJECUTIVA').count()*100/pymes_eje,
-                Alumno.objects.filter(id_practica__id_practica__estatus_proceso = 'CORREGIR INFORMACIÓN').filter(carrera = 'SISTEMAS').count()*100/sistemas,
-                Alumno.objects.filter(id_practica__id_practica__estatus_proceso = 'CORREGIR INFORMACIÓN').filter(carrera = 'TELEMATICA').count()*100/telematica
+                Alumno.objects.filter(id_practica__id_practica__estatus_proceso = 'CORREGIR INFORMACIÓN').filter(carrera = 'AUTOMOTRIZ').count()*100/automotriz if automotriz!=0 else 0,
+                Alumno.objects.filter(id_practica__id_practica__estatus_proceso = 'CORREGIR INFORMACIÓN').filter(carrera = 'MANUFACTURA').count()*100/manufactura if manufactura!=0 else 0,
+                Alumno.objects.filter(id_practica__id_practica__estatus_proceso = 'CORREGIR INFORMACIÓN').filter(carrera = 'MECATRONICA').count()*100/mecatronica if mecatronica!=0 else 0,
+                Alumno.objects.filter(id_practica__id_practica__estatus_proceso = 'CORREGIR INFORMACIÓN').filter(carrera = 'NEGOCIOS').count()*100/negocios if negocios!=0 else 0,
+                Alumno.objects.filter(id_practica__id_practica__estatus_proceso = 'CORREGIR INFORMACIÓN').filter(carrera = 'PYMES').count()*100/pymes if pymes!=0 else 0,
+                Alumno.objects.filter(id_practica__id_practica__estatus_proceso = 'CORREGIR INFORMACIÓN').filter(carrera = 'PYMES EJECUTIVA').count()*100/pymes_eje if pymes_eje!=0 else 0,
+                Alumno.objects.filter(id_practica__id_practica__estatus_proceso = 'CORREGIR INFORMACIÓN').filter(carrera = 'SISTEMAS').count()*100/sistemas if sistemas!=0 else 0,
+                Alumno.objects.filter(id_practica__id_practica__estatus_proceso = 'CORREGIR INFORMACIÓN').filter(carrera = 'TELEMATICA').count()*100/telematica if telematica!=0 else 0
             ],
             "rechazado":[
-                Alumno.objects.filter(id_practica__id_practica__estatus_proceso = 'RECHAZADO').filter(carrera = 'AUTOMOTRIZ').count()*100/automotriz,
-                Alumno.objects.filter(id_practica__id_practica__estatus_proceso = 'RECHAZADO').filter(carrera = 'MANUFACTURA').count()*100/manufactura,
-                Alumno.objects.filter(id_practica__id_practica__estatus_proceso = 'RECHAZADO').filter(carrera = 'MECATRONICA').count()*100/mecatronica,
-                Alumno.objects.filter(id_practica__id_practica__estatus_proceso = 'RECHAZADO').filter(carrera = 'NEGOCIOS').count()*100/negocios,
-                Alumno.objects.filter(id_practica__id_practica__estatus_proceso = 'RECHAZADO').filter(carrera = 'PYMES').count()*100/pymes,
-                Alumno.objects.filter(id_practica__id_practica__estatus_proceso = 'RECHAZADO').filter(carrera = 'PYMES EJECUTIVA').count()*100/pymes_eje,
-                Alumno.objects.filter(id_practica__id_practica__estatus_proceso = 'RECHAZADO').filter(carrera = 'SISTEMAS').count()*100/sistemas,
-                Alumno.objects.filter(id_practica__id_practica__estatus_proceso = 'RECHAZADO').filter(carrera = 'TELEMATICA').count()*100/telematica
+                Alumno.objects.filter(id_practica__id_practica__estatus_proceso = 'RECHAZADO').filter(carrera = 'AUTOMOTRIZ').count()*100/automotriz if automotriz!=0 else 0,
+                Alumno.objects.filter(id_practica__id_practica__estatus_proceso = 'RECHAZADO').filter(carrera = 'MANUFACTURA').count()*100/manufactura if manufactura!=0 else 0,
+                Alumno.objects.filter(id_practica__id_practica__estatus_proceso = 'RECHAZADO').filter(carrera = 'MECATRONICA').count()*100/mecatronica if mecatronica!=0 else 0,
+                Alumno.objects.filter(id_practica__id_practica__estatus_proceso = 'RECHAZADO').filter(carrera = 'NEGOCIOS').count()*100/negocios if negocios!=0 else 0,
+                Alumno.objects.filter(id_practica__id_practica__estatus_proceso = 'RECHAZADO').filter(carrera = 'PYMES').count()*100/pymes if pymes!=0 else 0,
+                Alumno.objects.filter(id_practica__id_practica__estatus_proceso = 'RECHAZADO').filter(carrera = 'PYMES EJECUTIVA').count()*100/pymes_eje if pymes_eje!=0 else 0,
+                Alumno.objects.filter(id_practica__id_practica__estatus_proceso = 'RECHAZADO').filter(carrera = 'SISTEMAS').count()*100/sistemas if sistemas!=0 else 0,
+                Alumno.objects.filter(id_practica__id_practica__estatus_proceso = 'RECHAZADO').filter(carrera = 'TELEMATICA').count()*100/telematica if telematica!=0 else 0
             ],
             "reprobado":[
-                Alumno.objects.filter(id_practica__id_practica__estatus_proceso = 'REPROBADO').filter(carrera = 'AUTOMOTRIZ').count()*100/automotriz,
-                Alumno.objects.filter(id_practica__id_practica__estatus_proceso = 'REPROBADO').filter(carrera = 'MANUFACTURA').count()*100/manufactura,
-                Alumno.objects.filter(id_practica__id_practica__estatus_proceso = 'REPROBADO').filter(carrera = 'MECATRONICA').count()*100/mecatronica,
-                Alumno.objects.filter(id_practica__id_practica__estatus_proceso = 'REPROBADO').filter(carrera = 'NEGOCIOS').count()*100/negocios,
-                Alumno.objects.filter(id_practica__id_practica__estatus_proceso = 'REPROBADO').filter(carrera = 'PYMES').count()*100/pymes,
-                Alumno.objects.filter(id_practica__id_practica__estatus_proceso = 'REPROBADO').filter(carrera = 'PYMES EJECUTIVA').count()*100/pymes_eje,
-                Alumno.objects.filter(id_practica__id_practica__estatus_proceso = 'REPROBADO').filter(carrera = 'SISTEMAS').count()*100/sistemas,
-                Alumno.objects.filter(id_practica__id_practica__estatus_proceso = 'REPROBADO').filter(carrera = 'TELEMATICA').count()*100/telematica
+                Alumno.objects.filter(id_practica__id_practica__estatus_proceso = 'REPROBADO').filter(carrera = 'AUTOMOTRIZ').count()*100/automotriz if automotriz!=0 else 0,
+                Alumno.objects.filter(id_practica__id_practica__estatus_proceso = 'REPROBADO').filter(carrera = 'MANUFACTURA').count()*100/manufactura if manufactura!=0 else 0,
+                Alumno.objects.filter(id_practica__id_practica__estatus_proceso = 'REPROBADO').filter(carrera = 'MECATRONICA').count()*100/mecatronica if mecatronica!=0 else 0,
+                Alumno.objects.filter(id_practica__id_practica__estatus_proceso = 'REPROBADO').filter(carrera = 'NEGOCIOS').count()*100/negocios if negocios!=0 else 0,
+                Alumno.objects.filter(id_practica__id_practica__estatus_proceso = 'REPROBADO').filter(carrera = 'PYMES').count()*100/pymes if pymes!=0 else 0,
+                Alumno.objects.filter(id_practica__id_practica__estatus_proceso = 'REPROBADO').filter(carrera = 'PYMES EJECUTIVA').count()*100/pymes_eje if pymes_eje!=0 else 0,
+                Alumno.objects.filter(id_practica__id_practica__estatus_proceso = 'REPROBADO').filter(carrera = 'SISTEMAS').count()*100/sistemas if sistemas!=0 else 0,
+                Alumno.objects.filter(id_practica__id_practica__estatus_proceso = 'REPROBADO').filter(carrera = 'TELEMATICA').count()*100/telematica if telematica!=0 else 0
             ],
             "solicitud":[
-                Alumno.objects.filter(id_practica__id_practica__estatus_proceso = 'SOLICITUD').filter(carrera = 'AUTOMOTRIZ').count()*100/automotriz,
-                Alumno.objects.filter(id_practica__id_practica__estatus_proceso = 'SOLICITUD').filter(carrera = 'MANUFACTURA').count()*100/manufactura,
-                Alumno.objects.filter(id_practica__id_practica__estatus_proceso = 'SOLICITUD').filter(carrera = 'MECATRONICA').count()*100/mecatronica,
-                Alumno.objects.filter(id_practica__id_practica__estatus_proceso = 'SOLICITUD').filter(carrera = 'NEGOCIOS').count()*100/negocios,
-                Alumno.objects.filter(id_practica__id_practica__estatus_proceso = 'SOLICITUD').filter(carrera = 'PYMES').count()*100/pymes,
-                Alumno.objects.filter(id_practica__id_practica__estatus_proceso = 'SOLICITUD').filter(carrera = 'PYMES EJECUTIVA').count()*100/pymes_eje,
-                Alumno.objects.filter(id_practica__id_practica__estatus_proceso = 'SOLICITUD').filter(carrera = 'SISTEMAS').count()*100/sistemas,
-                Alumno.objects.filter(id_practica__id_practica__estatus_proceso = 'SOLICITUD').filter(carrera = 'TELEMATICA').count()*100/telematica
+                Alumno.objects.filter(id_practica__id_practica__estatus_proceso = 'SOLICITUD').filter(carrera = 'AUTOMOTRIZ').count()*100/automotriz if automotriz!=0 else 0,
+                Alumno.objects.filter(id_practica__id_practica__estatus_proceso = 'SOLICITUD').filter(carrera = 'MANUFACTURA').count()*100/manufactura if manufactura!=0 else 0,
+                Alumno.objects.filter(id_practica__id_practica__estatus_proceso = 'SOLICITUD').filter(carrera = 'MECATRONICA').count()*100/mecatronica if mecatronica!=0 else 0,
+                Alumno.objects.filter(id_practica__id_practica__estatus_proceso = 'SOLICITUD').filter(carrera = 'NEGOCIOS').count()*100/negocios if negocios!=0 else 0,
+                Alumno.objects.filter(id_practica__id_practica__estatus_proceso = 'SOLICITUD').filter(carrera = 'PYMES').count()*100/pymes if pymes!=0 else 0,
+                Alumno.objects.filter(id_practica__id_practica__estatus_proceso = 'SOLICITUD').filter(carrera = 'PYMES EJECUTIVA').count()*100/pymes_eje if pymes_eje!=0 else 0,
+                Alumno.objects.filter(id_practica__id_practica__estatus_proceso = 'SOLICITUD').filter(carrera = 'SISTEMAS').count()*100/sistemas if sistemas!=0 else 0,
+                Alumno.objects.filter(id_practica__id_practica__estatus_proceso = 'SOLICITUD').filter(carrera = 'TELEMATICA').count()*100/telematica if telematica!=0 else 0
             ],
         }
 
