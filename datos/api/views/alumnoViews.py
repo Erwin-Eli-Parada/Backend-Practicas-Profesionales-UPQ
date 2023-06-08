@@ -39,7 +39,7 @@ class AlumnoViewSet(viewsets.ModelViewSet):
         #     return Response({'message':'Alumno eliminado correctamente'},status = status.HTTP_200_OK)
         # return Response({'error':'No existe'},status = status.HTTP_400_BAD_REQUEST)
 
-        queryset = self.get_queryset()
+        queryset = self.get_serializer().Meta.model.objects.all()
         
         # Eliminar todos los objetos del queryset
         queryset.delete()
