@@ -121,7 +121,8 @@ AUTH_PASSWORD_VALIDATORS = [
 AUTH_USER_MODEL = 'users.Usuario'
 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000"
+    "http://localhost:3000",
+    "https://resplendent-crostata-5bc63a.netlify.app"
 ]
 
 CORS_ORIGIN_WHITELIST = [
