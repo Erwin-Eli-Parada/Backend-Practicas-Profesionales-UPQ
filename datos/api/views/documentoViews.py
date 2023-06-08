@@ -206,10 +206,10 @@ def documentoView(request):
             ['Porcentaje del estatus rechazado en la carrera de Telemática', str("{:.2f}".format(estatus_carreras['rechazado'][7]))+"%"],
             ['Porcentaje del estatus reprobado en la carrera de Telemática', str("{:.2f}".format(estatus_carreras['reprobado'][7]))+"%"],
             ['Porcentaje del estatus solicitud en la carrera de Telemática', str("{:.2f}".format(estatus_carreras['solicitud'][7]))+"%"],
-            ['Promedio de calificaciones en la Estancia I', str("{:.2f}".format(estancia1Suma/estancia1Total))],   #promedios
-            ['Promedio de calificaciones en la Estancia II', str("{:.2f}".format(estancia2Suma/estancia2Total))],
-            ['Promedio de calificaciones en la Estadia', str("{:.2f}".format(estadiaSuma/estadiaTotal))],
-            ['Porcentaje de alumnos que serán contratados al termino de su Estadia',  str("{:.2f}".format(siContrato*100/totalContrato))+"%"]   #contratos  
+            ['Promedio de calificaciones en la Estancia I', str("{:.2f}".format(estancia1Suma/estancia1Total if estancia1Total!=0 else 0))],   #promedios
+            ['Promedio de calificaciones en la Estancia II', str("{:.2f}".format(estancia2Suma/estancia2Total if estancia2Total!=0 else 0))],
+            ['Promedio de calificaciones en la Estadia', str("{:.2f}".format(estadiaSuma/estadiaTotal if estadiaTotal!=0 else 0))],
+            ['Porcentaje de alumnos que serán contratados al termino de su Estadia',  str("{:.2f}".format(siContrato*100/totalContrato if totalContrato!=0 else 0))+"%"]   #contratos  
         ]
 
         # Crear el objeto de respuesta del ReportLab
