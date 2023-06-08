@@ -32,8 +32,8 @@ class AlumnoViewSet(viewsets.ModelViewSet):
                 return Response(alumno_serializer.data,status = status.HTTP_200_OK)
             return Response(alumno_serializer.errors, status = status.HTTP_400_BAD_REQUEST)
     
-    def destroy(self, request, pk=None):
-        alumno = self.get_queryset().filter(id = pk).first()
+    def destroy(self, request):
+        alumno = self.get_queryset().all()
         if alumno:
             alumno.delete()
             return Response({'message':'Alumno eliminado correctamente'},status = status.HTTP_200_OK)
