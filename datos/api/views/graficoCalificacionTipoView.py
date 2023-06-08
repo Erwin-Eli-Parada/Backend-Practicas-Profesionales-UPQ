@@ -20,9 +20,9 @@ def graficoCalificacionTipoView(request):
         estancia2Suma = Alumno.objects.filter(id_practica__id_practica__tipo_proceso = 'Estancia II').aggregate(total=Sum('id_practica__calificacion'))['total']
 
         respuesta = {
-            "estadia": estadiaSuma/estadiaTotal,
-            "estancia1": estancia1Suma/estancia1Total,
-            "estancia2": estancia2Suma/estancia2Total
+            "estadia": estadiaSuma/estadiaTotal if estadiaTotal!=0 else 0,
+            "estancia1": estancia1Suma/estancia1Total if estancia1Total!=0 else 0,
+            "estancia2": estancia2Suma/estancia2Total if estancia2Total!=0 else 0
         }
         
         return Response(respuesta, status= status.HTTP_200_OK) 
