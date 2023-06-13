@@ -34,6 +34,12 @@ class UsuarioAgregarSerializer(serializers.ModelSerializer):
         return value
     
 class UsuarioActualizarSerializer(serializers.ModelSerializer):
+    def update(self, instance, validated_data):
+        password = validated_data.pop('password', None)
+        if password:
+            instance.password = make_password(password)
+        return super().update(instance, validated_data)
+    
     class Meta:
         model = Usuario
         fields = '__all__'
