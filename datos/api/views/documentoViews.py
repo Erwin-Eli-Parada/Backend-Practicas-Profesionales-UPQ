@@ -10,7 +10,7 @@ from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import letter
 from reportlab.lib import colors
 from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Paragraph, Spacer, Image
-from reportlab.lib.styles import getSampleStyleSheet
+from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from django.db.models import Sum
 
 
@@ -144,6 +144,7 @@ def documentoView(request):
 
         #datos
         data = [
+            ['MÉTRICA','CANTIDAD'],
             ['Cantidad de procesos autorizados:', autorizado],             #procesos
             ['Cantidad de procesos concluidos:', concluido],
             ['Cantidad de procesos con información por corregir:', corregir_info],
@@ -222,7 +223,7 @@ def documentoView(request):
         # Crear estilos para el texto
         styles = getSampleStyleSheet()
         title_style = styles['Title']
-        paragraph_style = styles['Normal'] 
+        # paragraph_style = styles['Normal'] 
 
         # Agregar el título al documento
         title = Paragraph("Reporte de las practicas profesionales de la Universidad Politécnica de Querétaro", title_style)
@@ -235,15 +236,24 @@ def documentoView(request):
         content.append(Spacer(1, 24))
 
         # Agregar un párrafo al documento
-        paragraph_text = "Las métricas de las practicas profesionales son las siguientes:" 
-        paragraph = Paragraph(paragraph_text, paragraph_style)
+        paragraph_text = "Las métricas de las practicas profesionales del periodo mayo a agosto 2021 son las siguientes:" 
+        paraStyle = ParagraphStyle(
+            name='MiEstilo',
+            parent=styles['Normal'],  
+            fontSize=14,
+            leading=20
+        )
+        paragraph = Paragraph(paragraph_text, style=paraStyle)
         content.append(paragraph)
         content.append(Spacer(2, 24))
 
         # Agregar la tabla al documento
         table = Table(data)
         style = TableStyle([
-            # Estilos de la tabla
+            ('GRID', (0, 0), (-1, -1), 1, colors.black),
+            ("BACKGROUND", (0, 0), (-1, 0), colors.lightgrey),  # Fondo de la primera fila
+            ("TEXTCOLOR", (0, 0), (-1, 0), colors.black),  # Color del texto de la primera fila
+            ("FONTNAME", (0, 0), (-1, 0), "Helvetica-Bold")
         ])
         table.setStyle(style)
         content.append(table)
