@@ -2,8 +2,11 @@ from rest_framework import generics
 from rest_framework import status
 from rest_framework import viewsets
 from rest_framework.response import Response
+from rest_framework.views import APIView
+from rest_framework.decorators import api_view
 
 from datos.api.serializers.alumnoSerializer import AlumnoSerializer, AlumnoCrearSerializer
+from datos.models import Alumno
 
 class AlumnoViewSet(viewsets.ModelViewSet):
     serializer_class = AlumnoSerializer
@@ -43,3 +46,12 @@ class AlumnoViewSet(viewsets.ModelViewSet):
         
         # # Eliminar todos los objetos del queryset
         # queryset.delete()
+
+@api_view(['GET'])
+def alumno_detail_view(request, pk=None):
+    if request.method == 'GET':
+        encuesta = Alumno.objects.filter(correo_institucional = pk).first()
+        if encuesta==None:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+        encuesta_serializer = AlumnoSerializer(encuesta)
+        return Response(encuesta_serializer.data, status= status.HTTP_200_OK)

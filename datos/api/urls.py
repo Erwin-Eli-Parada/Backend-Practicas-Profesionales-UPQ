@@ -17,11 +17,13 @@ from .views.documentoViews import documentoView
 from .views.documentoNombresViews import documentoNombresView
 from .views.documentoEmpresasViews import documentoEmpresasView
 from .views.documentoAsesorViews import documentoAsesorView
+from .views.alumnoViews import alumno_detail_view
 
 urlpatterns = [
     path('datos/',include('datos.api.routers')),
     path('datos/encuestaAlumno/<str:pk>/', encuesta_detail_view, name='encuesta_api'),
     path('datos/comentarioAlumno/<str:pk>/', comentario_detail_view, name='comentario_api'),
+    path('datos/infoAlumno/<str:pk>/',alumno_detail_view, name='alumnoInfo_api'),
     path('grafico/status/', graficoStatusView, name='grafico_status'),
     path('grafico/tipo/', graficoTipoView, name='grafico_tipo'),
     path('grafico/carrera/', graficoCarreraView, name='grafico_carrera'),

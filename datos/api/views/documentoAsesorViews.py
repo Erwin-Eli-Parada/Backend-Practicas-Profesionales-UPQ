@@ -42,7 +42,7 @@ def documentoAsesorView(request):
         # paragraph_style = styles['Normal'] 
 
         # Agregar el título al documento
-        title = Paragraph("Reporte del alumnado inscrito en practicas profesionales de la Universidad Politécnica de Querétaro", title_style)
+        title = Paragraph("Reporte de los Asesores internos a cargo de las practicas profesionales de la Universidad Politécnica de Querétaro", title_style)
         content = [title, Spacer(1, 12)]
 
         # Agregar la imagen al documento
@@ -52,7 +52,7 @@ def documentoAsesorView(request):
         content.append(Spacer(1, 24))
 
         # Agregar un párrafo al documento
-        paragraph_text = "Los nombres y matriculas de los alumnos inscritos en las practicas profesionales del periodo mayo a agosto 2021 son los siguientes:" 
+        paragraph_text = "Los nombres de los asesores internos y cantidad de alumnos que han asesorado en las practicas profesionales del periodo mayo a agosto 2021 son los siguientes:" 
         paraStyle = ParagraphStyle(
             name='MiEstilo',
             parent=styles['Normal'],  
