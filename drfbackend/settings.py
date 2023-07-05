@@ -122,7 +122,7 @@ AUTH_USER_MODEL = 'users.Usuario'
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
-    "https://practicas-profesionales-upq.netlify.app"
+    "https://practicas-profesionales-upq.netlify.app" #CORS
 ]
 
 CORS_ORIGIN_WHITELIST = [

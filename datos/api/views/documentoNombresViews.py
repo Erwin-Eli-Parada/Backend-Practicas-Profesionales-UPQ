@@ -22,11 +22,11 @@ def documentoNombresView(request):
      # Datos de ejemplo para la tabla
 
         #datos
-        data = [["NOMBRE DEL ALUMNO","MATRICULA"]]
+        data = [["NOMBRE DEL ALUMNO","MATRICULA","Tipo de practica profesional"]]
         alumnos = Alumno.objects.order_by('matricula','nombre')
 
         for alumno in alumnos:
-            data.append([alumno.nombre,alumno.matricula])
+            data.append([alumno.nombre,alumno.matricula,alumno.id_practica.id_practica.tipo_proceso])
 
         # Crear el objeto de respuesta del ReportLab
         response = HttpResponse(content_type='application/pdf')
